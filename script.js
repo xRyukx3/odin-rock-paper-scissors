@@ -62,9 +62,32 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
+function getWinner(humanScore, computerScore) {
+  if (humanScore === computerScore) {
+    console.log("Both are awesome! It's a DRAW!");
+  } else if (humanScore > computerScore) {
+    console.log("You're the absolute winner!");
+  } else {
+    console.log("Computer won the game :/");
+  }
+}
+
+function printScore(humanScore, computerScore) {
+  const message =
+    "Human score: " + humanScore + "\n Computer score: " + computerScore;
+  console.log(message);
+}
+
+function playGame() {
+  for (i = 0; i < 5; i++) {
+    const computerSelection = getComputerChoice();
+    const humanSelection = getHumanChoice();
+    playRound(computerSelection, humanSelection);
+  }
+  getWinner(humanScore, computerScore);
+  printScore(humanScore, computerScore);
+}
+
 let humanScore = 0;
 let computerScore = 0;
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice();
-
-playRound(computerSelection, humanSelection);
+playGame();
