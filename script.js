@@ -9,3 +9,10 @@ function getComputerChoice() {
     return "scissors";
   }
 }
+
+function getHumanChoice() {
+  const message =
+    "Choose one of the following: \n 1. Rock \n 2. Paper \n 3. Scissors";
+  const humanChoice = prompt(message, 1);
+  return humanChoice;
+}
