@@ -17,6 +17,7 @@ function getHumanChoice(roundWinner, score) {
     "\n" +
     score;
   let humanChoice = prompt(message);
+  console.log(parseInt(humanChoice));
   switch (parseInt(humanChoice)) {
     case 1:
       humanChoice = "rock";
@@ -28,6 +29,7 @@ function getHumanChoice(roundWinner, score) {
       humanChoice = "scissors";
       break;
   }
+  console.log(humanChoice);
   return humanChoice;
 }
 
@@ -76,7 +78,7 @@ function playGame() {
   for (i = 0; i < 5; i++) {
     const computerSelection = getComputerChoice();
     const humanSelection = getHumanChoice(roundWinner, score);
-    roundWinner = playRound(computerSelection, humanSelection);
+    roundWinner = playRound(humanSelection, computerSelection);
     score = printScore(humanScore, computerScore);
   }
   alert(getWinner(humanScore, computerScore));
