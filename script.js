@@ -29,52 +29,34 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-  if (
-    (humanChoice == "rock" && computerChoice == "rock") ||
-    (humanChoice == "paper" && computerChoice == "paper") ||
-    (humanChoice == "scissors" && computerChoice == "scissors")
-  ) {
+  if (humanChoice === computerChoice) {
     console.log("Draw");
-  }
-  if (humanChoice == "rock" && computerChoice == "paper") {
-    console.log("Computer wins");
-    computerScore += 1;
-  }
-  if (humanChoice == "rock" && computerChoice == "scissors") {
+  } else if (
+    (humanChoice == "rock" && computerChoice == "scissors") ||
+    (humanChoice == "paper" && computerChoice == "rock") ||
+    (humanChoice == "scissors" && computerChoice == "paper")
+  ) {
     console.log("You win");
     humanScore += 1;
-  }
-  if (humanChoice == "paper" && computerChoice == "rock") {
-    console.log("You win");
-    humanScore += 1;
-  }
-  if (humanChoice == "paper" && computerChoice == "scissors") {
+  } else {
     console.log("Computer wins");
     computerScore += 1;
-  }
-  if (humanChoice == "scissors" && computerChoice == "rock") {
-    console.log("Computer wins");
-    computerScore += 1;
-  }
-  if (humanChoice == "scissors" && computerChoice == "paper") {
-    console.log("You win");
-    humanScore += 1;
   }
 }
 
 function getWinner(humanScore, computerScore) {
   if (humanScore === computerScore) {
-    console.log("Both are awesome! It's a DRAW!");
+    console.log("Both are awesome! It's a tie!");
   } else if (humanScore > computerScore) {
     console.log("You're the absolute winner!");
   } else {
-    console.log("Computer won the game :/");
+    console.log("Computer won the game :c");
   }
 }
 
 function printScore(humanScore, computerScore) {
   const message =
-    "Human score: " + humanScore + "\n Computer score: " + computerScore;
+    "Human score: " + humanScore + "\nComputer score: " + computerScore;
   console.log(message);
 }
 
