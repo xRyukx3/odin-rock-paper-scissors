@@ -10,9 +10,12 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
+function getHumanChoice(roundWinner, score) {
   const message =
-    "Choose one of the following: \n 1. Rock \n 2. Paper \n 3. Scissors";
+    "Choose one of the following: \n 1. Rock \n 2. Paper \n 3. Scissors\n" +
+    roundWinner +
+    "\n" +
+    score;
   let humanChoice = prompt(message);
   switch (parseInt(humanChoice)) {
     case 1:
@@ -29,47 +32,58 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
+  let message = "";
+  let selections =
+    "Human selection: " +
+    humanChoice +
+    "    Computer selection: " +
+    computerChoice +
+    "\n";
   if (humanChoice === computerChoice) {
-    console.log("Draw");
+    message = "It's a tie";
   } else if (
     (humanChoice == "rock" && computerChoice == "scissors") ||
     (humanChoice == "paper" && computerChoice == "rock") ||
     (humanChoice == "scissors" && computerChoice == "paper")
   ) {
-    console.log("You win");
+    message = "You win";
     humanScore += 1;
   } else {
-    console.log("Computer wins");
+    message = "Computer wins";
     computerScore += 1;
   }
+  return selections + message;
 }
 
 function getWinner(humanScore, computerScore) {
   if (humanScore === computerScore) {
-    console.log("Both are awesome! It's a tie!");
+    message = "Both are awesome! It's a tie!";
   } else if (humanScore > computerScore) {
-    console.log("You're the absolute winner!");
+    message = "You're the absolute winner!";
   } else {
-    console.log("Computer won the game :c");
+    message = "Computer won the game :c";
   }
+  return message;
 }
 
 function printScore(humanScore, computerScore) {
   const message =
     "Human score: " + humanScore + "\nComputer score: " + computerScore;
-  console.log(message);
+  return message;
 }
 
 function playGame() {
   for (i = 0; i < 5; i++) {
     const computerSelection = getComputerChoice();
-    const humanSelection = getHumanChoice();
-    playRound(computerSelection, humanSelection);
+    const humanSelection = getHumanChoice(roundWinner, score);
+    roundWinner = playRound(computerSelection, humanSelection);
+    score = printScore(humanScore, computerScore);
   }
-  getWinner(humanScore, computerScore);
-  printScore(humanScore, computerScore);
+  alert(getWinner(humanScore, computerScore));
 }
 
 let humanScore = 0;
 let computerScore = 0;
+let roundWinner = "";
+let score = "";
 playGame();
