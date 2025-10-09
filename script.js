@@ -1,39 +1,20 @@
 function getComputerChoice() {
-  let randN = Math.random();
-  randN *= 100;
-  if (randN >= 0 && randN < 33) {
-    return "rock";
-  } else if (randN >= 33 && randN < 66) {
-    return "paper";
-  } else {
-    return "scissors";
-  }
-}
-
-function getHumanChoice(roundWinner, score) {
-  const message =
-    "Choose one of the following: \n 1. Rock \n 2. Paper \n 3. Scissors\n" +
-    roundWinner +
-    "\n" +
-    score;
-  let humanChoice = prompt(message);
-  console.log(parseInt(humanChoice));
-  switch (parseInt(humanChoice)) {
+  let randNumber = Math.floor(Math.random() * 3 + 1);
+  switch (randNumber) {
     case 1:
-      humanChoice = "rock";
+      return "rock";
       break;
     case 2:
-      humanChoice = "paper";
+      return "paper";
       break;
     case 3:
-      humanChoice = "scissors";
+      return "scissors";
       break;
   }
-  console.log(humanChoice);
-  return humanChoice;
 }
 
 function playRound(humanChoice, computerChoice) {
+  console.log(humanChoice + " " + computerChoice);
   let message = "";
   let selections =
     "Human selection: " +
@@ -74,18 +55,17 @@ function printScore(humanScore, computerScore) {
   return message;
 }
 
-function playGame() {
-  for (i = 0; i < 5; i++) {
-    const computerSelection = getComputerChoice();
-    const humanSelection = getHumanChoice(roundWinner, score);
-    roundWinner = playRound(humanSelection, computerSelection);
-    score = printScore(humanScore, computerScore);
-  }
-  alert(getWinner(humanScore, computerScore));
-}
-
 let humanScore = 0;
 let computerScore = 0;
 let roundWinner = "";
 let score = "";
-playGame();
+
+const humanPlayerOptions = document.querySelectorAll("button#option");
+
+humanPlayerOptions.forEach((button) => {
+  button.addEventListener("click", () => {
+    let humanSelection = button.classList;
+    let computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  });
+});
